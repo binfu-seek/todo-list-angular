@@ -55,6 +55,12 @@ button {
   cursor: pointer;
 }
 
+.error-message {
+  color: #ef4444;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
 @media (max-width: 700px) {
   :host {
     padding: 1rem;

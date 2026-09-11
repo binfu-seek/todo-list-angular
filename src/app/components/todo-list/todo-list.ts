@@ -32,22 +32,47 @@ export class TodoListComponent implements OnInit {
   }>;
 
   hoveredTodoGuid: string | null = null;
+  errorMessage: string | null = null;
 
   ngOnInit() {
-    this.todoService.loadTodos().subscribe();
+    this.todoService.loadTodos().subscribe({
+      next: () => {
+        this.errorMessage = null;
+      },
+      error: (error) => {
+        console.log('Error loading todos:', error);
+        this.errorMessage = error.error.detail || 'An error occurred while loading todos.';
+        debugger;
+      }
+    });
   }
 
   onSubmit() {
     if (this.todoForm.valid) {
       const newTodo = this.todoForm.value as CreateTodoRequest;
-      this.todoService.addTodo(newTodo).subscribe(() => {
-        this.todoForm.reset();
+      this.todoService.addTodo(newTodo).subscribe({
+        next: () => {
+          this.todoForm.reset();
+          this.errorMessage = null;
+        },
+        error: (error) => {
+          this.errorMessage = error.error.detail || 'An error occurred while adding the todo.';
+          debugger;
+        }
       });
     }
   } 
 
   deleteTodo(guid: string) {
-    this.todoService.deleteTodo(guid).subscribe();
+    this.todoService.deleteTodo(guid).subscribe({
+      next: () => {
+        this.errorMessage = null;
+      },
+      error: (error) => {
+        this.errorMessage = error.error.detail || 'An error occurred while deleting the todo.';
+        debugger;
+      }
+    });
   }
 
   onHover(guid: string | null) {
