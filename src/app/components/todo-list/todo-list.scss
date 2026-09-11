@@ -16,6 +16,17 @@
   background-color: #eceff2;
   border-radius: 6px;
   border: 3px solid #b3c2d0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-actions {
+  display: flex;
+
+  button {
+    align-self: center;
+    background: #ef4444;
+  }
 }
 
 .todo-form {

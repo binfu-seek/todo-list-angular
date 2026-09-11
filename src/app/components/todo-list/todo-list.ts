@@ -43,4 +43,7 @@ export class TodoListComponent implements OnInit {
     }
   } 
 
+  deleteTodo(guid: string) {
+    this.todoService.deleteTodo(guid).subscribe();
+  }
 }

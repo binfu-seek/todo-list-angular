@@ -4,8 +4,13 @@
         <ul class="todo-list">
             @for (todo of todos(); track todo.guid) {
             <li class="todo-item">
-                <h3>{{ todo.title }}</h3>
-                <p>{{ todo.description }}</p>
+                <div class="todo-content">
+                    <h3>{{ todo.title }}</h3>
+                    <p>{{ todo.description }}</p>
+                </div>
+                <div class="todo-actions">
+                    <button (click)="deleteTodo(todo.guid)">Delete</button>
+                </div>
             </li>
             }
         </ul>
