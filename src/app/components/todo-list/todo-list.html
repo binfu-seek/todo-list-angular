@@ -25,7 +25,7 @@
             <button type="submit">Add Todo</button>
         </form>
     </div>
-    @if (errorMessage) {
-    <div class="error-message">{{ errorMessage }}</div>
+    @if (errorMessage()) {
+    <div class="error-message">{{ errorMessage() }}</div>
     }
 </div>

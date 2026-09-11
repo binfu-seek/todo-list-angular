@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { TodoService } from '../../services/todo.servise';
 import { ReactiveFormsModule, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateTodoRequest } from '../../models/todo.models';
@@ -32,16 +32,16 @@ export class TodoListComponent implements OnInit {
   }>;
 
   hoveredTodoGuid: string | null = null;
-  errorMessage: string | null = null;
+  errorMessage = signal<string | null>(null);
 
   ngOnInit() {
     this.todoService.loadTodos().subscribe({
       next: () => {
-        this.errorMessage = null;
+        this.errorMessage.set(null);
       },
       error: (error) => {
         console.log('Error loading todos:', error);
-        this.errorMessage = error.error.detail || 'An error occurred while loading todos.';
+        this.errorMessage.set(error.error.detail || 'An error occurred while loading todos.');
         debugger;
       }
     });
@@ -53,10 +53,10 @@ export class TodoListComponent implements OnInit {
       this.todoService.addTodo(newTodo).subscribe({
         next: () => {
           this.todoForm.reset();
-          this.errorMessage = null;
+          this.errorMessage.set(null);
         },
         error: (error) => {
-          this.errorMessage = error.error.detail || 'An error occurred while adding the todo.';
+          this.errorMessage.set(error.error.detail || 'An error occurred while adding the todo.');
           debugger;
         }
       });
@@ -66,10 +66,10 @@ export class TodoListComponent implements OnInit {
   deleteTodo(guid: string) {
     this.todoService.deleteTodo(guid).subscribe({
       next: () => {
-        this.errorMessage = null;
+        this.errorMessage.set(null);
       },
       error: (error) => {
-        this.errorMessage = error.error.detail || 'An error occurred while deleting the todo.';
+        this.errorMessage.set(error.error.detail || 'An error occurred while deleting the todo.');
         debugger;
       }
     });
