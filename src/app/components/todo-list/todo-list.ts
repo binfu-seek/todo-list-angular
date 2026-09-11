@@ -10,12 +10,9 @@ import { CreateTodoRequest } from '../../models/todo.models';
   templateUrl: './todo-list.html',
 })
 export class TodoListComponent implements OnInit {
-  todoForm!: FormGroup<{
-    title: FormControl<string>;
-    description: FormControl<string>;
-    notes: FormControl<string>;
-  }>;
-
+  get todos() {
+    return this.todoService.todos$;
+  }
   constructor(
     private readonly todoService: TodoService,
     private readonly fb: FormBuilder
@@ -26,6 +23,14 @@ export class TodoListComponent implements OnInit {
       notes: ['']
     });
   }
+  // readonly todos = this.todoService.todos$;
+  
+  todoForm!: FormGroup<{
+    title: FormControl<string>;
+    description: FormControl<string>;
+    notes: FormControl<string>;
+  }>;
+
 
   ngOnInit() {
     this.todoService.loadTodos().subscribe();
