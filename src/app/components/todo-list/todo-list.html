@@ -1,1 +1,12 @@
 <p>todo-list works!</p>
+<div>
+    <div>
+        
+    </div>
+    <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+        <input formControlName="title" placeholder="Enter todo title" />
+        <input formControlName="description" placeholder="Enter todo description" />
+        <input formControlName="notes" placeholder="Enter todo notes" />
+        <button type="submit">Add Todo</button>
+    </form>
+</div>
