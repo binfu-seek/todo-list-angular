@@ -20,7 +20,6 @@ export class TodoListComponent implements OnInit {
     this.todoForm = this.fb.nonNullable.group({
       title: ['', [Validators.required, Validators.maxLength(100)]],
       description: [''],
-      notes: ['']
     });
   }
   // readonly todos = this.todoService.todos$;
@@ -28,7 +27,6 @@ export class TodoListComponent implements OnInit {
   todoForm!: FormGroup<{
     title: FormControl<string>;
     description: FormControl<string>;
-    notes: FormControl<string>;
   }>;
 
 

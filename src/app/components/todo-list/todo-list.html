@@ -1,21 +1,19 @@
 <h1>To-Do List</h1>
 <div>
     <div>
-        <ul>
+        <ul class="todo-list">
             @for (todo of todos(); track todo.guid) {
-            <li>
+            <li class="todo-item">
                 <h3>{{ todo.title }}</h3>
                 <p>{{ todo.description }}</p>
-                <p>{{ todo.notes }}</p>
             </li>
             }
         </ul>
     </div>
     <div>
-        <form [formGroup]="todoForm" (ngSubmit)="onSubmit()">
+        <form class="todo-form" [formGroup]="todoForm" (ngSubmit)="onSubmit()">
             <input formControlName="title" placeholder="Enter todo title" />
             <input formControlName="description" placeholder="Enter todo description" />
-            <input formControlName="notes" placeholder="Enter todo notes" />
             <button type="submit">Add Todo</button>
         </form>
     </div>
