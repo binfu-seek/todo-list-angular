@@ -3,7 +3,10 @@
     <div>
         <ul class="todo-list">
             @for (todo of todos(); track todo.guid) {
-            <li class="todo-item">
+            <li class="todo-item" 
+                (mouseenter)="onHover(todo.guid)" 
+                (mouseleave)="onLeave()"  
+                [ngClass]="{ 'hovered': hoveredTodoGuid === todo.guid }">
                 <div class="todo-content">
                     <h3>{{ todo.title }}</h3>
                     <p>{{ todo.description }}</p>

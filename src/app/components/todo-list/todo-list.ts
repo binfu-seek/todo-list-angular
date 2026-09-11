@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { TodoService } from '../../services/todo.servise';
 import { ReactiveFormsModule, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { CreateTodoRequest } from '../../models/todo.models';
+import { NgClass } from '@angular/common';
 
 @Component({
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgClass],
   selector: 'app-todo-list',
   styleUrl: './todo-list.scss',
   templateUrl: './todo-list.html',
@@ -13,6 +14,7 @@ export class TodoListComponent implements OnInit {
   get todos() {
     return this.todoService.todos$;
   }
+
   constructor(
     private readonly todoService: TodoService,
     private readonly fb: FormBuilder
@@ -29,6 +31,7 @@ export class TodoListComponent implements OnInit {
     description: FormControl<string>;
   }>;
 
+  hoveredTodoGuid: string | null = null;
 
   ngOnInit() {
     this.todoService.loadTodos().subscribe();
@@ -45,5 +48,13 @@ export class TodoListComponent implements OnInit {
 
   deleteTodo(guid: string) {
     this.todoService.deleteTodo(guid).subscribe();
+  }
+
+  onHover(guid: string | null) {
+    this.hoveredTodoGuid = guid;
+  }
+
+  onLeave() {
+    this.hoveredTodoGuid = null;
   }
 }

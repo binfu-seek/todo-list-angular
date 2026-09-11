@@ -18,6 +18,10 @@
   border: 3px solid #b3c2d0;
   display: flex;
   justify-content: space-between;
+
+    &.hovered .todo-actions button{
+      display: block;
+    }
 }
 
 .todo-actions {
@@ -26,6 +30,7 @@
   button {
     align-self: center;
     background: #ef4444;
+    display: none;
   }
 }
 
