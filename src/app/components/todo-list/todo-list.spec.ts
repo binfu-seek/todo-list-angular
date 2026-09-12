@@ -55,6 +55,8 @@ describe('TodoListComponent', () => {
     expect(todoServiceMock.addTodo).not.toHaveBeenCalled();
   });
 
+  // Form validations such as required, max length, and min length should be tested in real projects, but for brevity, we will skip those here.
+
   // Delete todo test
 
   it('should delete a todo', () => {
