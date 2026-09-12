@@ -24,7 +24,6 @@ export class TodoListComponent implements OnInit {
       description: [''],
     });
   }
-  // readonly todos = this.todoService.todos$;
   
   todoForm!: FormGroup<{
     title: FormControl<string>;
@@ -41,7 +40,7 @@ export class TodoListComponent implements OnInit {
       },
       error: (error) => {
         console.log('Error loading todos:', error);
-        this.errorMessage.set(error.error.detail || 'An error occurred while loading todos.');
+        this.errorMessage.set(error?.error?.detail || 'An error occurred while loading todos.');
         debugger;
       }
     });
@@ -56,7 +55,7 @@ export class TodoListComponent implements OnInit {
           this.errorMessage.set(null);
         },
         error: (error) => {
-          this.errorMessage.set(error.error.detail || 'An error occurred while adding the todo.');
+          this.errorMessage.set(error?.error?.detail || 'An error occurred while adding the todo.');
           debugger;
         }
       });
@@ -69,7 +68,7 @@ export class TodoListComponent implements OnInit {
         this.errorMessage.set(null);
       },
       error: (error) => {
-        this.errorMessage.set(error.error.detail || 'An error occurred while deleting the todo.');
+        this.errorMessage.set(error?.error?.detail || 'An error occurred while deleting the todo.');
         debugger;
       }
     });
